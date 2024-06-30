@@ -1,0 +1,48 @@
+SOLUTIONS:
+
+Create a "books" table with the following columns: id (serial primary key), title (varchar), author (varchar), published_date (date), genre (varchar):
+
+postgres=# CREATE TABLE books (
+id serial primary key,
+title varchar (255),
+author varchar (255),
+published_date date,
+genre varchar (255)
+);
+
+
+Add 4 books to the board:
+
+INSERT INTO books VALUES
+postgres-# ('1', 'Changeling', 'Clint Eastwood', '2008-10-31', 'mystery');
+
+
+Write an SQL query that returns all books by a given author:
+
+postgres=# SELECT author FROM books;
+
+
+Create an "authors" table with the following columns: id (serial primary key), name (varchar), birthdate (date):
+
+postgres=# CREATE TABLE authors (id serial primary key, name varchar (255), birthdate date);
+
+
+Modify the "books" table to include an "author_id" column, which is a foreign key to the "authors" table:
+
+postgres=# ALTER TABLE books ADD COLUMN author_id INT;
+ALTER TABLE
+postgres=# ALTER TABLE books ADD CONSTRAINT fk_author FOREIGN KEY (author_id) REFERENCES authors(id);
+ALTER TABLE
+
+
+Add some authors to the "authors" table and update the "books" table to use the "author_id" column to identify the authors:
+
+postgres=# INSERT INTO books (id, author) VALUES ('6', 'Ady Endre');
+postgres=# UPDATE books SET author_id = (SELECT id FROM authors WHERE name = 'Ady Endre');
+
+
+Write a query that returns the titles of the books and the names of the authors:
+
+postgres=# SELECT books.title, authors.name
+FROM books
+JOIN authors ON books.author_id = authors.id;
