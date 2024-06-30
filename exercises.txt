@@ -1,0 +1,12 @@
+1. Database design and queries:
+
+Create a "books" table with the following columns: id (serial primary key), title (varchar), author (varchar), published_date (date), genre (varchar).
+Add 4 books to the board.
+Write an SQL query that returns all books by a given author.
+
+2. Data connections:
+
+Create an "authors" table with the following columns: id (serial primary key), name (varchar), birthdate (date).
+Modify the "books" table to include an "author_id" column, which is a foreign key to the "authors" table.
+Add some authors to the "authors" table and update the "books" table to use the "author_id" column to identify the authors.
+Write a query that returns the titles of the books and the names of the authors.
